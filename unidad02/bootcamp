@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Config
+clusters:
+- cluster:
+    api-version: v1
+    certificate-authority-data: ***
+    server: "https://***"
+  name: "rke-bootcamp-cluster"
+contexts:
+- context:
+    cluster: "rke-bootcamp-cluster"
+    user: "kube-admin-rke-bootcamp-cluster"
+  name: "rke-bootcamp-cluster"
+current-context: "rke-bootcamp-cluster"
+users:
+- name: "kube-admin-rke-bootcamp-cluster"
+  user:
+    client-certificate-data: ***
+    client-key-data: ***
