@@ -1,0 +1,6 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: k8s4arch-hotels
+  labels:
+    name: k8s4arch-hotels

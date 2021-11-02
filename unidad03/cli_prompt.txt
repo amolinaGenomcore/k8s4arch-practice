@@ -1,0 +1,23 @@
+$ kubectl get all -n k8s4arch-hotels
+NAME                                    READY   STATUS    RESTARTS   AGE
+pod/hotels-deployment-d8d76c444-8jzsz   1/1     Running   0          7s
+pod/hotels-deployment-d8d76c444-wl6k5   1/1     Running   0          7s
+
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/hotels-deployment   2/2     2            2           7s
+
+NAME                                          DESIRED   CURRENT   READY   AGE
+replicaset.apps/hotels-deployment-d8d76c444   2         2         2       7s
+
+----------------------------------------------------------------------------
+
+$ kubectl port-forward pod/hotels-deployment-d8d76c444-8jzsz 8000:80  -n k8s4arch-hotels
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
+Handling connection for 8000
