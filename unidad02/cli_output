@@ -5,3 +5,7 @@ Server Version: version.Info{Major:"1", Minor:"21+", GitVersion:"v1.21.5-3+83e2b
 $ kubectl get nodes -o wide
 NAME                   STATUS   ROLES    AGE   VERSION                    INTERNAL-IP    EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
 amolina-thinkpad-l13   Ready    <none>   19m   v1.21.5-3+83e2bb7ee39726   192.168.1.40   <none>        Ubuntu 20.04.3 LTS   5.11.0-37-generic   containerd://1.4.4
+
+$ kubectl get pods
+NAME                     READY   STATUS             RESTARTS   AGE
+nginx-6799fc88d8-2ln7x   1/1     Running            0          4m28s
