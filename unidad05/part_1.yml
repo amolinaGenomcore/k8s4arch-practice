@@ -1,0 +1,82 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: k8s4arch-hotels
+  labels:
+    name: k8s4arch-hotels
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: k8s4arch-hotels-secret
+  namespace: k8s4arch-hotels
+type: Opaque
+data:
+  DB_PATH: L2RiL2hvdGVscy5qc29uCg==
+  DB_TABLE: aG90ZWxzCg==
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotels-deployment
+  namespace: k8s4arch-hotels
+  labels:
+    app: k8s4arch-hotels
+    backend: python
+    version: stable
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k8s4arch-hotels
+      backend: python
+      version: stable
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: k8s4arch-hotels
+        backend: python
+        version: stable
+    spec:
+      containers:
+      - name: k8s4arch-hotels
+        image: ghcr.io/go-elevate/k8s4arch-hotels-backend:slim
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: DB_PATH
+            valueFrom:
+              secretKeyRef:
+                name: k8s4arch-hotels-secret
+                key: DB_PATH
+          - name: DB_TABLE
+            valueFrom:
+              secretKeyRef:
+                name: k8s4arch-hotels-secret
+                key: DB_TABLE
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /status
+            port: 5000
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 20
+          timeoutSeconds: 1
+          failureThreshold: 2
+          successThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: 5000
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 20
+          timeoutSeconds: 5
+          failureThreshold: 2
+          successThreshold: 1
