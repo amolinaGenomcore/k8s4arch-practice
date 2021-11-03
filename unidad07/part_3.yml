@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: k8s4arch-hotels-allow-frontend-ingress-only
+  namespace: k8s4arch-hotels
+spec:
+  podSelector:
+    matchLabels:
+      app: k8s4arch-hotels
+      backend: python
+      version: stable
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: k8s4arch-hotels
+          frontend: react
+    ports:
+    - protocol: TCP
+      port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: k8s4arch-hotels-deny-all-egress
+  namespace: k8s4arch-hotels
+spec:
+  podSelector:
+    matchLabels:
+      app: k8s4arch-hotels
+      backend: python
+      version: stable
+  policyTypes:
+  - Egress

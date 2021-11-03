@@ -1,0 +1,26 @@
+$ kubectl apply -f part_1_and_2.yml
+$ kubectl apply -f part_3.yml
+
+
+$ kubectl get all -n k8s4arch-hotels
+NAME                                            READY   STATUS    RESTARTS   AGE
+pod/hotels-deployment-77697577c-4m9lq           2/2     Running   0          25m
+pod/hotels-deployment-77697577c-785wq           2/2     Running   0          25m
+pod/k8s4arch-hotels-frontend-54558b4869-bjzqv   1/1     Running   0          7m54s
+pod/k8s4arch-hotels-frontend-54558b4869-rtz8w   1/1     Running   0          7m54s
+pod/k8s4arch-hotels-backend-7d68ddc8d4-rvlh7    1/1     Running   0          7m54s
+pod/k8s4arch-hotels-backend-7d68ddc8d4-h4br8    1/1     Running   0          7m54s
+
+NAME                                   TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+service/k8s4arch-hotels-frontend-svc   ClusterIP   10.152.183.233   <none>        80/TCP    7m54s
+service/k8s4arch-hotels-backend-svc    ClusterIP   10.152.183.60    <none>        80/TCP    7m54s
+
+NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/hotels-deployment          2/2     2            2           25m
+deployment.apps/k8s4arch-hotels-frontend   2/2     2            2           7m54s
+deployment.apps/k8s4arch-hotels-backend    2/2     2            2           7m54s
+
+NAME                                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/hotels-deployment-77697577c           2         2         2       25m
+replicaset.apps/k8s4arch-hotels-frontend-54558b4869   2         2         2       7m54s
+replicaset.apps/k8s4arch-hotels-backend-7d68ddc8d4    2         2         2       7m54s
