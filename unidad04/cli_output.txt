@@ -1,4 +1,4 @@
-
+[...]
 $ kubectl apply -f part_1.yml
 
 $ kubectl apply -f part_2_and_3.yml
@@ -18,3 +18,11 @@ replicaset.apps/hotels-deployment-6b856566b6   2         2         2       3m7s
 
 NAME                                    SCHEDULE    SUSPEND   ACTIVE   LAST SCHEDULE   AGE
 cronjob.batch/k8s4arch-hotels-cronjob   0 2 * * *   False     0        <none>          3m7s
+
+[...]
+
+$ kubectl get pods -n k8s4arch-hotels
+NAME                                 READY   STATUS      RESTARTS   AGE
+hotels-deployment-6b856566b6-7hm9r   1/1     Running     0          6m28s
+hotels-deployment-6b856566b6-qmhbp   1/1     Running     0          6m28s
+k8s4arch-hotels-job-manual-tzbs8     0/1     Completed   0          33s
