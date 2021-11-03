@@ -1,0 +1,10 @@
+$ kubectl apply -f part_1.yml
+
+$ kubectl get pods -n k8s4arch-hotels
+NAME                                READY   STATUS    RESTARTS   AGE
+hotels-deployment-77697577c-4m9lq   2/2     Running   0          7m31s
+hotels-deployment-77697577c-785wq   2/2     Running   0          7m31s
+
+$ kubectl exec -it -n k8s4arch-hotels pod/hotels-deployment-77697577c-4m9lq -c k8s4arch-hotels-frontend -- curl http://localhost:5000/hotels
+[...]
+...wH0X/2Q==","price":1,"rooms":4,"slug":"campo-tinto"}]
