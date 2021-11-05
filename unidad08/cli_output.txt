@@ -1,0 +1,8 @@
+$ kubectl apply -f part_1.yml
+
+$ kubectl get pv,pods -n k8s4arch-hotels
+NAME                                            READY   STATUS    RESTARTS   AGE
+pod/k8s4arch-hotels-backend-5d6b85d8dc-xvf67    0/1     Pending   0          5m32s
+pod/k8s4arch-hotels-backend-5d6b85d8dc-n8n4w    0/1     Pending   0          5m32s
+pod/k8s4arch-hotels-frontend-54558b4869-6gdg9   1/1     Running   0          5m32s
+pod/k8s4arch-hotels-frontend-54558b4869-6fcl8   1/1     Running   0          5m32s
